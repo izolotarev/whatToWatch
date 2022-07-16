@@ -8,21 +8,30 @@ import Movie from '../movie/movie';
 import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
+import { MovieType } from '../../types/movie';
+import { ReviewType } from '../../types/review';
 
-function App(): JSX.Element {
+type AppProps = {
+  movies: MovieType[],
+  reviews: ReviewType[]
+}
+
+function App(props: AppProps): JSX.Element {
+  const {movies, reviews} = props;
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={AppRoute.ROOT} element={<Main cardsNumber={Setting.CARDS_NUMBER}/>}/>
+        <Route path={AppRoute.ROOT} element={<Main movies={movies} cardsNumber={Setting.CARDS_NUMBER}/>}/>
         <Route path={AppRoute.LOGIN} element={<Login />}/>
         <Route path={AppRoute.FAVORITES} element={
           <RequireAuth authorizationStatus={AuthorizationStatus.Auth}>
-            <Favorites/>
+            <Favorites favoriteMovies={movies}/>
           </RequireAuth>
         }
         />
-        <Route path={`${AppRoute.MOVIES}/:id`} element={<Movie/>}/>
-        <Route path={`${AppRoute.MOVIES}/:id${AppRoute.ADD_REVIEW}`} element={<AddReview/>}/>
+        <Route path={`${AppRoute.MOVIES}/:id`} element={<Movie movie={movies[0]} reviews={reviews}/>}/>
+        <Route path={`${AppRoute.MOVIES}/:id${AppRoute.ADD_REVIEW}`} element={<AddReview movie={movies[0]}/>}/>
         <Route path={`${AppRoute.PLAYER}/:id`} element={<Player/>}/>
         <Route path={'*'} element={<NotFound/>}/>
       </Routes>

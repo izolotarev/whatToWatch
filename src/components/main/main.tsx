@@ -1,17 +1,24 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const/const';
+import { MovieType } from '../../types/movie';
 import Footer from '../footer/footer';
 import Header from '../header/header';
-import MovieCard from '../movie-card/movie-card';
+// import MovieCard from '../movie-card/movie-card';
+import MovieList from '../movie-list/movie-list';
 
 type MainProps = {
   cardsNumber: number;
+  movies: MovieType[];
 }
 
-function Main({cardsNumber}:MainProps):JSX.Element {
+function Main({cardsNumber, movies}:MainProps):JSX.Element {
+  const promoMovie = movies[0];
+
   return (
     <div className='page'>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={promoMovie.backgroundImage} alt={promoMovie.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -21,23 +28,23 @@ function Main({cardsNumber}:MainProps):JSX.Element {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={promoMovie.posterImage} alt={promoMovie.name} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{promoMovie.name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{promoMovie.genre}</span>
+                <span className="movie-card__year">{promoMovie.released}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <Link to={{pathname: `${AppRoute.PLAYER}/${promoMovie.id}`}} className="btn btn--play movie-card__button" type="button">
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
-                </button>
+                </Link>
                 <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -87,11 +94,7 @@ function Main({cardsNumber}:MainProps):JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__movies-list">
-            {
-              Array(cardsNumber).fill(null).map(() => <MovieCard key={1}/>)
-            }
-          </div>
+          <MovieList movies={movies}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
