@@ -52,7 +52,7 @@ export const reviews: ReviewType[] = [
     'date': '2019-05-08T14:13:56.569Z'
   },
   {
-    'id': 1,
+    'id': 6,
     'user': {
       'id': 4,
       'name': 'Kate Muir'

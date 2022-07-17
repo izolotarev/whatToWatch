@@ -1,6 +1,8 @@
 import { MovieType } from '../types/movie';
 
-const PREVIEW_URL = 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4';
+const PREVIEW_URL = 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm';
+
+// 'https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4'
 
 export const movies: MovieType[] = [
   {
@@ -32,7 +34,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 7.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
@@ -51,7 +53,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 6.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
@@ -70,7 +72,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 2.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
@@ -89,7 +91,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 1.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
@@ -108,7 +110,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 1.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
@@ -127,7 +129,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 5.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
@@ -146,7 +148,7 @@ export const movies: MovieType[] = [
     'videoLink': PREVIEW_URL,
     'previewVideoLink': PREVIEW_URL,
     'description': 'In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave\'s friend and protege.',
-    'rating': 8.9,
+    'rating': 9.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],

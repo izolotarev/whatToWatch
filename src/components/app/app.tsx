@@ -30,7 +30,7 @@ function App(props: AppProps): JSX.Element {
           </RequireAuth>
         }
         />
-        <Route path={`${AppRoute.MOVIES}/:id`} element={<Movie movie={movies[0]} reviews={reviews}/>}/>
+        <Route path={`${AppRoute.MOVIES}/:id`} element={<Movie movie={movies[1]} reviews={reviews} movies={movies}/>}/>
         <Route path={`${AppRoute.MOVIES}/:id${AppRoute.ADD_REVIEW}`} element={<AddReview movie={movies[0]}/>}/>
         <Route path={`${AppRoute.PLAYER}/:id`} element={<Player/>}/>
         <Route path={'*'} element={<NotFound/>}/>
