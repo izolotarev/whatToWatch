@@ -1,7 +1,7 @@
 import { Fragment, memo, MouseEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
-import { MovieType } from '../../types/movie';
+import { MovieType } from '../../types/types';
 import PreviewVideoPlayer from '../preview-video-player/preview-video-player';
 
 type MovieProps = {

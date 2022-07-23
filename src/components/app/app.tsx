@@ -8,8 +8,8 @@ import Movie from '../movie/movie';
 import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import NotFound from '../not-found/not-found';
-import { MovieType } from '../../types/movie';
-import { ReviewType } from '../../types/review';
+import { MovieType } from '../../types/types';
+import { ReviewType } from '../../types/types';
 
 type AppProps = {
   movies: MovieType[],

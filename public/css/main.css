@@ -791,6 +791,7 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-wrap: wrap;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start; }
@@ -1121,6 +1122,8 @@ main {
     transition: color 0.2s; }
 
 .review {
+  flex-basis: 40%;
+  margin-right: 80px;
   border-bottom: 2px solid #E8C3C4;
   font-size: 17px;
   color: #252525;

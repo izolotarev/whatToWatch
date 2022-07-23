@@ -23,3 +23,13 @@ export const MovieTabNames = {
   DETAILS: 'Details',
   REVIEWS: 'Reviews',
 } as const;
+
+export enum ActionType {
+  SelectGenre = 'MAIN/SELECT_GENRE',
+  LoadReviews = 'MOVIES/LOAD_REVIEWS',
+  RequireAuthorization = 'USER/REQUIRE_AUTHORIZATION',
+  RequireLogout = 'USER/REQUIRE_LOGOUT',
+  RedirectToRoute = 'USER/REDIRECT',
+}
+
+export const MOVIE_CARDS_PER_STEP = 8;

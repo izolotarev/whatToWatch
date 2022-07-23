@@ -1,3 +1,5 @@
+import { ReviewType } from '../types/types';
+
 export const ratingToText = (rating: number):string => {
   if (rating >= 0 && rating < 3) {
     return 'Bad';
@@ -11,4 +13,23 @@ export const ratingToText = (rating: number):string => {
     return 'Awesome';
   }
   return 'rating';
+};
+
+//WIP
+export const adaptReviewToClient = (data: ReviewType): ReviewType => {
+  const adaptedItem = Object.assign(
+    {},
+    data,
+    {
+      user: {
+        // avatarUrl: data.user['avatar_url'],
+        id: data.user.id,
+        // isPro: data.user['is_pro'],
+        name: data.user.name,
+      },
+    },
+  );
+  // delete adaptedItem.user['avatar_url'];
+  // delete adaptedItem.user['is_pro'];
+  return adaptedItem;
 };

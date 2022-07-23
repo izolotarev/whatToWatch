@@ -1,10 +1,15 @@
+import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const/const';
-import { MovieType } from '../../types/movie';
+import { AppRoute, MOVIE_CARDS_PER_STEP } from '../../const/const';
+import { getSelectedGenre } from '../../store/reducers/movies/movies-selectors';
+import { MovieType } from '../../types/types';
 import Footer from '../footer/footer';
+import GenreList from '../genre-list/genre-list';
 import Header from '../header/header';
 // import MovieCard from '../movie-card/movie-card';
 import MovieList from '../movie-list/movie-list';
+import ShowMore from '../show-more/show-more';
 
 type MainProps = {
   cardsNumber: number;
@@ -13,6 +18,28 @@ type MainProps = {
 
 function Main({cardsNumber, movies}:MainProps):JSX.Element {
   const promoMovie = movies[0];
+
+  const genres = movies.map((movie) => movie.genre);
+  const uniqueGenres = [...new Set(genres)];
+  uniqueGenres.unshift('All');
+
+
+  const selectedGenre = useSelector(getSelectedGenre);
+
+  let moviesInSelectedGenre;
+  if (selectedGenre === 'All') {
+    moviesInSelectedGenre = movies.slice();
+  } else {
+    moviesInSelectedGenre = movies.slice().filter((movie) => movie.genre === selectedGenre);
+  }
+
+  const numberOfMovies = moviesInSelectedGenre.length;
+
+  const [numberOfMoviesToShow, setNumberOfMoviesToShow] = useState(MOVIE_CARDS_PER_STEP);
+
+  const increaseNumberOfMoviesToShow = useCallback(() => setNumberOfMoviesToShow((prev) => prev + MOVIE_CARDS_PER_STEP), []);
+
+  const resetNumberOfMoviesToShow = useCallback(() => setNumberOfMoviesToShow(MOVIE_CARDS_PER_STEP), []);
 
   return (
     <div className='page'>
@@ -61,44 +88,16 @@ function Main({cardsNumber, movies}:MainProps):JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <GenreList genres={uniqueGenres} resetNumberOfMoviesToShow={resetNumberOfMoviesToShow}/>
+          <MovieList movies={moviesInSelectedGenre} numberOfMoviesToShow={numberOfMoviesToShow}/>
 
-          <MovieList movies={movies}/>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          {
+            numberOfMovies > MOVIE_CARDS_PER_STEP && numberOfMoviesToShow < numberOfMovies
+              ?
+              <ShowMore increaseNumberOfMoviesToShow={increaseNumberOfMoviesToShow}/>
+              :
+              ''
+          }
         </section>
         <Footer/>
       </div>

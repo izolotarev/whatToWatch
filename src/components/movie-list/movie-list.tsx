@@ -1,15 +1,23 @@
-import { MovieType } from '../../types/movie';
+import { MovieType } from '../../types/types';
 import MovieCard from '../movie-card/movie-card';
 
 type MovieListProps = {
   movies: MovieType[];
+  numberOfMoviesToShow?: number;
 }
 
-function MovieList({movies}: MovieListProps): JSX.Element {
+function MovieList({movies, numberOfMoviesToShow}: MovieListProps): JSX.Element {
+  let moviesToShow;
+  if (numberOfMoviesToShow) {
+    moviesToShow = movies.slice(0, numberOfMoviesToShow);
+  } else {
+    moviesToShow = movies;
+  }
+
   return (
     <div className="catalog__movies-list">
       {
-        movies.map((movie) => <MovieCard movie={movie} key={movie.id} />)
+        moviesToShow.map((movie) => <MovieCard movie={movie} key={movie.id} />)
       }
     </div>
   );

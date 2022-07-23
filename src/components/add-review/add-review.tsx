@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
-import { MovieType } from '../../types/movie';
+import { MovieType } from '../../types/types';
 import ReviewForm from '../review-form/review-form';
 
 type AddReviewParams = {
@@ -12,10 +12,10 @@ type AddReviewProps = {
 }
 
 function AddReview({movie}:AddReviewProps):JSX.Element {
-  // const params = useParams<AddReviewParams>();
-  // const id = parseInt(params.id ?? '', 10);
+  const params = useParams<AddReviewParams>();
+  const id = parseInt(params.id ?? '', 10);
 
-  // console.log(id);
+  console.log(id);
 
   return (
     <section className="movie-card movie-card--full">

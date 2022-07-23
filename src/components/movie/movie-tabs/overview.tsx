@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { MovieType } from '../../../types/movie';
+import { MovieType } from '../../../types/types';
 import { ratingToText } from '../../../utils/utils';
 
 type OverviewProps = {

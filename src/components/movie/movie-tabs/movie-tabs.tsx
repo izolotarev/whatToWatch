@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { MovieTabNames } from '../../../const/const';
-import { MovieType } from '../../../types/movie';
-import { ReviewType } from '../../../types/review';
+import { MovieType } from '../../../types/types';
+import { ReviewType } from '../../../types/types';
 import Details from './details';
 import Overview from './overview';
 import ReviewList from './review-list';

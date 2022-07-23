@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
-import { MovieType } from '../../types/movie';
+import { MovieType } from '../../types/types';
 import Footer from '../footer/footer';
 import MovieList from '../movie-list/movie-list';
 
