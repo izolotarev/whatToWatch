@@ -1,4 +1,4 @@
-import { Fragment, memo, MouseEvent, useState } from 'react';
+import { memo, MouseEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/const';
 import { MovieType } from '../../types/types';
@@ -35,7 +35,7 @@ function MovieCard({movie}:MovieProps):JSX.Element {
             <PreviewVideoPlayer src={previewVideoLink} poster={previewImage}/>
           </Link>
           :
-          <Fragment>
+          <>
             <Link to={{pathname: `${AppRoute.MOVIES}/${id}`}}>
               <div className="small-movie-card__image">
                 <img src={previewImage} alt={name} width="280" height="175" />
@@ -44,7 +44,7 @@ function MovieCard({movie}:MovieProps):JSX.Element {
             <h3 className="small-movie-card__title">
               <a href="#" className="small-movie-card__link" >{name}</a>
             </h3>
-          </Fragment>
+          </>
       }
     </article>
   );

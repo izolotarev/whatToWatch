@@ -1,22 +1,22 @@
 import { MouseEvent } from 'react';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useAppDispatch} from '../../hooks/hooks';
 import { selectGenre } from '../../store/actions/actions';
 import { getSelectedGenre } from '../../store/reducers/movies/movies-selectors';
 
 type GenreListProps = {
   genres: string[];
-  resetNumberOfMoviesToShow: () => void;
+  resetNumberOfMoviesToShow?: () => void;
 }
 
 function GenreList({genres, resetNumberOfMoviesToShow}: GenreListProps):JSX.Element {
   const selectedGenre = useSelector(getSelectedGenre);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleGenreClick = (evt: MouseEvent<HTMLElement>) => {
     evt.preventDefault();
-    resetNumberOfMoviesToShow();
+    resetNumberOfMoviesToShow?.();
 
     const input = evt.target as HTMLElement;
     if (input.textContent) {

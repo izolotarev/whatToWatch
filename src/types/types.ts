@@ -1,3 +1,6 @@
+import { Action } from 'redux';
+import { ThunkAction} from 'redux-thunk';
+import { AxiosInstance } from 'axios';
 import { AuthorizationStatus } from '../const/const';
 import { RootState } from '../store/reducers/root-reducer';
 
@@ -19,6 +22,15 @@ export type MovieType = {
   genre: string,
   released: number,
   isFavorite: boolean,
+  ['poster_image']?: string,
+  ['preview_image']?: string,
+  ['background_image']?: string,
+  ['background_color']?: string,
+  ['video_link']?: string,
+  ['preview_video_link']?: string,
+  ['scores_count']?: number,
+  ['run_time']?: number,
+  ['is_favorite']?: boolean,
 };
 
 export type ReviewType = {
@@ -29,19 +41,24 @@ export type ReviewType = {
   date: string
 }
 
-export type UserType = {
-  id: number,
-  name: string
-}
-
 export type PostReviewType = {
   comment: string;
   rating: number;
 }
 
+export type UserType = {
+  id: number,
+  name: string
+}
+
 export type MovieState = {
   selectedGenre: string;
   movies: MovieType[];
+  moviesLoaded: boolean;
+  promo?: MovieType;
+  isPromoLoaded: boolean;
+  movie?: MovieType;
+  isMovieLoaded: boolean;
 }
 
 export type ReviewState = {
@@ -52,7 +69,17 @@ export type ReviewState = {
 
 export type UserState = {
   authorizationStatus: AuthorizationStatus,
-  userEmail?: string
+  userEmail?: string,
+  avatarUrl?: string,
 }
 
 export type State = RootState;
+
+export type ThunkActionResult<R = Promise<void>> = ThunkAction<R, State, AxiosInstance, Action>;
+
+export type AuthInfo = {
+  id: string,
+  email: string,
+  name: string,
+  avatar_url: string,
+};

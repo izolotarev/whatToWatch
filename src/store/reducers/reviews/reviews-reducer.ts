@@ -1,7 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { ReviewState } from '../../../types/types';
-import { adaptReviewToClient } from '../../../utils/utils';
-import { loadReviews } from '../../actions/actions';
+import { clearPostReviewError, clearPostReviewStatus, loadReviews, postReviewAction, postReviewError } from '../../actions/actions';
 
 
 export const initialState: ReviewState = {
@@ -13,7 +12,20 @@ export const initialState: ReviewState = {
 export const reviewsData = createReducer(initialState, (builder) => {
   builder
     .addCase(loadReviews, (state, action) => {
-      state.reviews = action.payload.reviews?.map((review) => adaptReviewToClient(review));
+      state.reviews = action.payload.reviews;
+    })
+    .addCase(postReviewAction, (state, action) => {
+      state.reviews = action.payload.reviews;
+      state.postSuccess = true;
+    })
+    .addCase(postReviewError, (state) => {
+      state.postError = true;
+    })
+    .addCase(clearPostReviewStatus, (state) => {
+      state.postSuccess = initialState.postSuccess;
+    })
+    .addCase(clearPostReviewError, (state) => {
+      state.postError = initialState.postError;
     });
 });
 

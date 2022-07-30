@@ -1,28 +1,26 @@
 import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { AppRoute, MOVIE_CARDS_PER_STEP } from '../../const/const';
-import { getSelectedGenre } from '../../store/reducers/movies/movies-selectors';
+import { AppRoute, HeaderClass, MOVIE_CARDS_PER_STEP } from '../../const/const';
+import { getPromo, getSelectedGenre } from '../../store/reducers/movies/movies-selectors';
 import { MovieType } from '../../types/types';
 import Footer from '../footer/footer';
 import GenreList from '../genre-list/genre-list';
 import Header from '../header/header';
-// import MovieCard from '../movie-card/movie-card';
+import LoadingScreen from '../loading-screen/loading-screen';
 import MovieList from '../movie-list/movie-list';
 import ShowMore from '../show-more/show-more';
 
 type MainProps = {
-  cardsNumber: number;
   movies: MovieType[];
 }
 
-function Main({cardsNumber, movies}:MainProps):JSX.Element {
-  const promoMovie = movies[0];
+function Main({ movies}:MainProps):JSX.Element {
+  const promoMovie = useSelector(getPromo);
 
   const genres = movies.map((movie) => movie.genre);
   const uniqueGenres = [...new Set(genres)];
   uniqueGenres.unshift('All');
-
 
   const selectedGenre = useSelector(getSelectedGenre);
 
@@ -41,6 +39,12 @@ function Main({cardsNumber, movies}:MainProps):JSX.Element {
 
   const resetNumberOfMoviesToShow = useCallback(() => setNumberOfMoviesToShow(MOVIE_CARDS_PER_STEP), []);
 
+  if (!promoMovie) {
+    return (
+      <LoadingScreen/>
+    );
+  }
+
   return (
     <div className='page'>
       <section className="movie-card">
@@ -50,7 +54,7 @@ function Main({cardsNumber, movies}:MainProps):JSX.Element {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <Header/>
+        <Header isWithUserNavigation headerClass={HeaderClass.MOVIE_CARD}/>
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">

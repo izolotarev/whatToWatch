@@ -1,55 +1,62 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { AppRoute } from '../../const/const';
-import { MovieType } from '../../types/types';
-import { ReviewType } from '../../types/types';
+import { AppRoute, AuthorizationStatus, HeaderClass } from '../../const/const';
+import { useAppDispatch } from '../../hooks/hooks';
+import { clearMovieById } from '../../store/actions/actions';
+import { fetchMovieById, fetchReviews } from '../../store/actions/api-actions';
+import { getMovieById, getSimilarMoviesByGenre } from '../../store/reducers/movies/movies-selectors';
+import { getReviews } from '../../store/reducers/reviews/reviews-selector';
+import { getAuthorizationStatus } from '../../store/reducers/user/user-selectors';
+import { State } from '../../types/types';
 import Footer from '../footer/footer';
+import Header from '../header/header';
+import LoadingScreen from '../loading-screen/loading-screen';
 import MovieList from '../movie-list/movie-list';
 import MovieTabs from './movie-tabs/movie-tabs';
-
-type MovieProps = {
-  reviews: ReviewType[];
-  movie: MovieType;
-  movies: MovieType[];
-}
 
 type MovieParams = {
   id: string;
 };
 
-function Movie({reviews, movie, movies}: MovieProps):JSX.Element {
+function Movie():JSX.Element {
   const params = useParams<MovieParams>();
-
   const id = parseInt(params.id ?? '', 10);
 
-  const similarMovies = movies.slice().filter((mov) => mov.genre === movie.genre).slice(0,4);
+  const dispatch = useAppDispatch();
 
-  console.log(id);
+  useEffect(() => {
+    dispatch(fetchMovieById(id));
+    dispatch(fetchReviews(id));
+    window.scrollTo(0,0);
+    return () => {dispatch(clearMovieById());};
+  }, [id]);
+
+  const movie = useSelector(getMovieById);
+  const reviews = useSelector(getReviews);
+  const genre = movie?.genre ?? 'All';
+
+  const similarMovies = useSelector((state: State) => getSimilarMoviesByGenre(state, genre));
+
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+
+  if (!movie) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   return (
     <div className='page'>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{background: movie.backgroundColor}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={movie.backgroundImage} alt={movie.name} />
+            <img src={movie.backgroundImage} alt={`${movie.name} poster`} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <Link className="logo__link" to={AppRoute.ROOT}>
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
+          <Header headerClass={HeaderClass.MOVIE_CARD} isWithUserNavigation/>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
@@ -72,7 +79,13 @@ function Movie({reviews, movie, movies}: MovieProps):JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={{pathname: `${AppRoute.MOVIES}/${id}${AppRoute.ADD_REVIEW}`}} className="btn movie-card__button">Add review</Link>
+                {
+                  authorizationStatus === AuthorizationStatus.Auth
+                    ?
+                    <Link to={{pathname: `${AppRoute.MOVIES}/${id}${AppRoute.ADD_REVIEW}`}} state={movie} className="btn movie-card__button">Add review</Link>
+                    :
+                    ''
+                }
               </div>
             </div>
           </div>
@@ -81,7 +94,7 @@ function Movie({reviews, movie, movies}: MovieProps):JSX.Element {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={movie.posterImage} alt={movie.name} width="218" height="327" />
             </div>
             <MovieTabs movie={movie} reviews={reviews}></MovieTabs>
           </div>

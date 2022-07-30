@@ -1,4 +1,4 @@
-import { useState, useEffect, MutableRefObject} from "react";
+import { useState, useEffect, MutableRefObject} from 'react';
 
 const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | null>) => {
 
