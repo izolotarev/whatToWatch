@@ -44,7 +44,7 @@ function MovieTabs({movie, reviews}:MovieTabsProps):JSX.Element {
       </TabContent>
       <TabContent id={MovieTabNames.REVIEWS} activeTab={activeTab}>
         {
-          reviews
+          reviews && reviews.length > 0
             ? <ReviewList reviews={reviews}/>
             : <ReviewListEmpty/>
         }

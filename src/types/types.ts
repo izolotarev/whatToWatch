@@ -59,6 +59,8 @@ export type MovieState = {
   isPromoLoaded: boolean;
   movie?: MovieType;
   isMovieLoaded: boolean;
+  favoriteMovies: MovieType[];
+  favoriteMoviesLoaded: boolean;
 }
 
 export type ReviewState = {

@@ -5,10 +5,11 @@ import { AppRoute, AuthorizationStatus, HeaderClass } from '../../const/const';
 import { useAppDispatch } from '../../hooks/hooks';
 import { clearMovieById } from '../../store/actions/actions';
 import { fetchMovieById, fetchReviews } from '../../store/actions/api-actions';
-import { getMovieById, getSimilarMoviesByGenre } from '../../store/reducers/movies/movies-selectors';
+import { getMovieById, getMovieFavoriteStatusById, getSimilarMoviesByGenre } from '../../store/reducers/movies/movies-selectors';
 import { getReviews } from '../../store/reducers/reviews/reviews-selector';
 import { getAuthorizationStatus } from '../../store/reducers/user/user-selectors';
 import { State } from '../../types/types';
+import { handleFavoriteClickAction } from '../../utils/utils';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import LoadingScreen from '../loading-screen/loading-screen';
@@ -34,11 +35,15 @@ function Movie():JSX.Element {
 
   const movie = useSelector(getMovieById);
   const reviews = useSelector(getReviews);
-  const genre = movie?.genre ?? 'All';
 
+  const genre = movie?.genre ?? 'All';
   const similarMovies = useSelector((state: State) => getSimilarMoviesByGenre(state, genre));
 
   const authorizationStatus = useSelector(getAuthorizationStatus);
+
+  const isFavorite = useSelector((state: State) => getMovieFavoriteStatusById(state, id));
+
+  const handleFavoriteClick = () => dispatch(handleFavoriteClickAction(authorizationStatus, isFavorite, id));
 
   if (!movie) {
     return (
@@ -73,10 +78,18 @@ function Movie():JSX.Element {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button" onClick={handleFavoriteClick}>
+                  {
+                    isFavorite
+                      ?
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      :
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                  }
                   <span>My list</span>
                 </button>
                 {

@@ -1,4 +1,7 @@
-import { MovieType, ReviewType } from '../types/types';
+import { AppRoute, AuthorizationStatus } from '../const/const';
+import { redirectToRoute } from '../store/actions/actions';
+import { addToFavorites, removeFromFavorites } from '../store/actions/api-actions';
+import { MovieType, ThunkActionResult } from '../types/types';
 
 export const ratingToText = (rating: number):string => {
   if (rating >= 0 && rating < 3) {
@@ -57,9 +60,13 @@ export const validate = (login?: string, password?: string): boolean => {
   return false;
 };
 
-export const getErrorMessage = (error: unknown) => {
-  if (error instanceof Error) {
-    return error.message;
-  }
-  return String(error);
-};
+export const handleFavoriteClickAction = (status: AuthorizationStatus, isFavorite: boolean, id: number): ThunkActionResult =>
+  async (dispatch, _getState): Promise<void> => {
+    if (status !== AuthorizationStatus.Auth) {
+      dispatch(redirectToRoute(AppRoute.LOGIN));
+    } else if (isFavorite) {
+      dispatch(removeFromFavorites(id));
+    } else {
+      dispatch(addToFavorites(id));
+    }
+  };

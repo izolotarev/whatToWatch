@@ -1,9 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoute, HeaderClass, MOVIE_CARDS_PER_STEP } from '../../const/const';
-import { getPromo, getSelectedGenre } from '../../store/reducers/movies/movies-selectors';
-import { MovieType } from '../../types/types';
+import { useAppDispatch } from '../../hooks/hooks';
+import { getMovieFavoriteStatusById, getMoviesInSelectedGenre, getPromo, getPromoLoadingStatus, getUniqueGenres } from '../../store/reducers/movies/movies-selectors';
+import { getAuthorizationStatus } from '../../store/reducers/user/user-selectors';
+import { MovieType, State } from '../../types/types';
+import { handleFavoriteClickAction } from '../../utils/utils';
 import Footer from '../footer/footer';
 import GenreList from '../genre-list/genre-list';
 import Header from '../header/header';
@@ -17,20 +20,8 @@ type MainProps = {
 
 function Main({ movies}:MainProps):JSX.Element {
   const promoMovie = useSelector(getPromo);
-
-  const genres = movies.map((movie) => movie.genre);
-  const uniqueGenres = [...new Set(genres)];
-  uniqueGenres.unshift('All');
-
-  const selectedGenre = useSelector(getSelectedGenre);
-
-  let moviesInSelectedGenre;
-  if (selectedGenre === 'All') {
-    moviesInSelectedGenre = movies.slice();
-  } else {
-    moviesInSelectedGenre = movies.slice().filter((movie) => movie.genre === selectedGenre);
-  }
-
+  const genres = useSelector(getUniqueGenres);
+  const moviesInSelectedGenre = useSelector(getMoviesInSelectedGenre);
   const numberOfMovies = moviesInSelectedGenre.length;
 
   const [numberOfMoviesToShow, setNumberOfMoviesToShow] = useState(MOVIE_CARDS_PER_STEP);
@@ -39,7 +30,16 @@ function Main({ movies}:MainProps):JSX.Element {
 
   const resetNumberOfMoviesToShow = useCallback(() => setNumberOfMoviesToShow(MOVIE_CARDS_PER_STEP), []);
 
-  if (!promoMovie) {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
+
+  const promoId = promoMovie?.id ?? 0;
+
+  const isPromoFavorite = useSelector((state: State) => getMovieFavoriteStatusById(state, promoId));
+
+  const handleFavoriteClick = () => dispatch(handleFavoriteClickAction(authorizationStatus, isPromoFavorite, promoId));
+
+  if (!promoMovie || !movies) {
     return (
       <LoadingScreen/>
     );
@@ -76,10 +76,18 @@ function Main({ movies}:MainProps):JSX.Element {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                <button className="btn btn--list movie-card__button" type="button" onClick={handleFavoriteClick}>
+                  {
+                    isPromoFavorite
+                      ?
+                      <svg viewBox="0 0 18 14" width="18" height="14">
+                        <use xlinkHref="#in-list"></use>
+                      </svg>
+                      :
+                      <svg viewBox="0 0 19 20" width="19" height="20">
+                        <use xlinkHref="#add"></use>
+                      </svg>
+                  }
                   <span>My list</span>
                 </button>
               </div>
@@ -92,7 +100,7 @@ function Main({ movies}:MainProps):JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList genres={uniqueGenres} resetNumberOfMoviesToShow={resetNumberOfMoviesToShow}/>
+          <GenreList genres={genres} resetNumberOfMoviesToShow={resetNumberOfMoviesToShow}/>
           <MovieList movies={moviesInSelectedGenre} numberOfMoviesToShow={numberOfMoviesToShow}/>
 
           {

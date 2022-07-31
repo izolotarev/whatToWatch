@@ -23,7 +23,6 @@ function AddReview():JSX.Element {
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
-        {/* WIP breadcrumbs */}
         <Header page={PageScreen.AddReview} headerClass={HeaderClass.NO_CLASS} isWithUserNavigation/>
 
         <div className="movie-card__poster movie-card__poster--small">

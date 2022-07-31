@@ -65,6 +65,35 @@ export const clearPostReviewStatus = createAction(ActionType.ClearPostReviewStat
 
 export const clearPostReviewError = createAction(ActionType.ClearPostReviewError);
 
+export const loadFavoriteMovies = createAction(
+  ActionType.GetFavoriteMovies,
+  (favoriteMovies: MovieType[]) => ({
+    payload: {
+      favoriteMovies,
+    },
+  }),
+);
+
+export const clearFavoriteMovies = createAction(ActionType.ClearFavoriteMovies);
+
+export const addToFavoriteMovies = createAction(
+  ActionType.AddToFavoriteMovies,
+  (favoriteMovie: MovieType) => ({
+    payload: {
+      favoriteMovie,
+    },
+  }),
+);
+
+export const removeFromFavoriteMovies = createAction(
+  ActionType.RemoveFromFavoriteMovies,
+  (favoriteMovie: MovieType) => ({
+    payload: {
+      favoriteMovie,
+    },
+  }),
+);
+
 export const requireAuthorization = createAction(
   ActionType.RequireAuthorization,
   (authStatus: AuthorizationStatus, email?: string, avatarUrl?: string) => ({

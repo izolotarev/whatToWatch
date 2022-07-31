@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { MovieState } from '../../../types/types';
 import { adaptMovieToClient } from '../../../utils/utils';
-import { clearMovieById, loadMovieById, loadMovies, loadPromo, selectGenre } from '../../actions/actions';
+import { addToFavoriteMovies, clearFavoriteMovies, clearMovieById, loadFavoriteMovies, loadMovieById, loadMovies, loadPromo, removeFromFavoriteMovies, selectGenre } from '../../actions/actions';
 
 
 export const initialState: MovieState = {
@@ -12,6 +12,8 @@ export const initialState: MovieState = {
   isPromoLoaded: false,
   movie: undefined,
   isMovieLoaded: false,
+  favoriteMovies: [],
+  favoriteMoviesLoaded: false,
 };
 
 export const moviesData = createReducer(initialState, (builder) => {
@@ -33,5 +35,19 @@ export const moviesData = createReducer(initialState, (builder) => {
     })
     .addCase(clearMovieById, (state, action) => {
       state.movie = initialState.movie;
+    })
+    .addCase(loadFavoriteMovies, (state, action) => {
+      state.favoriteMovies = action.payload.favoriteMovies.map((item) => adaptMovieToClient(item));
+      state.favoriteMoviesLoaded = true;
+    })
+    .addCase(clearFavoriteMovies, (state) => {
+      state.favoriteMovies = initialState.favoriteMovies;
+    })
+    .addCase(addToFavoriteMovies, (state, action) => {
+      const newFavoriteMovie = adaptMovieToClient(action.payload.favoriteMovie);
+      state.favoriteMovies.push(newFavoriteMovie);
+    })
+    .addCase(removeFromFavoriteMovies, (state, action) => {
+      state.favoriteMovies = state.favoriteMovies.filter((item) => item.id !== action.payload.favoriteMovie.id);
     });
 });

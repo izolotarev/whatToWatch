@@ -1,6 +1,6 @@
 function ReviewListEmpty(): JSX.Element {
   return (
-    <h1>No reviews for this movie so far</h1>
+    <h3 style={{color: 'black'}}>No reviews for this movie so far</h3>
   );
 }
 export default ReviewListEmpty;

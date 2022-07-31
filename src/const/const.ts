@@ -44,6 +44,10 @@ export enum ActionType {
   PostError = 'MOVIES/POST_REVIEW_ERROR',
   ClearPostReviewStatus = 'MOVIES/CLEAR_POST_REVIEW_STATUS',
   ClearPostReviewError = 'MOVIES/CLEAR_POST_REVIEW_ERROR',
+  GetFavoriteMovies = 'FAVORITE/LOAD_FAVORITE_MOVIES',
+  ClearFavoriteMovies = 'FAVORITE/CLEAR_FAVORITE_MOVIES',
+  AddToFavoriteMovies = 'FAVORITE/ADD_TO_FAVORITE',
+  RemoveFromFavoriteMovies = 'FAVORITE/REMOVE_FROM_FAVORITE',
   RequireAuthorization = 'USER/REQUIRE_AUTHORIZATION',
   RequireLogout = 'USER/REQUIRE_LOGOUT',
   RedirectToRoute = 'USER/REDIRECT',
@@ -64,3 +68,11 @@ export enum PageScreen {
   Favorites,
   AddReview
 }
+
+export const MAX_NUMBER_OF_GENRES = 10;
+export const NUMBER_OF_SIMILAR_MOVIES = 4;
+
+export const TypeOfFavoriteAction = {
+  ADD_TO_FAVORITE: 1,
+  REMOVE_FROM_FAVORITE: 0,
+};

@@ -8,7 +8,7 @@ import App from './components/app/app';
 import { AuthorizationStatus } from './const/const';
 import { createAPI } from './services/api';
 import { requireAuthorization } from './store/actions/actions';
-import { checkAuth, fetchMovies, fetchPromo } from './store/actions/api-actions';
+import { checkAuth, fetchFavoriteMovies, fetchMovies, fetchPromo } from './store/actions/api-actions';
 import { redirect } from './store/middlewares/redirect';
 import { rootReducer } from './store/reducers/root-reducer';
 import { ToastContainer } from 'react-toastify';
@@ -34,6 +34,7 @@ export type AppDispatch = typeof store.dispatch
 store.dispatch(checkAuth());
 store.dispatch(fetchPromo());
 store.dispatch(fetchMovies());
+store.dispatch(fetchFavoriteMovies());
 
 
 const container = document.getElementById('root');

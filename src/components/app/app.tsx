@@ -29,12 +29,17 @@ function App(): JSX.Element {
       <Route path={AppRoute.LOGIN} element={<Login />}/>
       <Route path={AppRoute.FAVORITES} element={
         <RequireAuth authorizationStatus={AuthorizationStatus.Auth}>
-          <Favorites favoriteMovies={movies}/>
+          <Favorites/>
         </RequireAuth>
       }
       />
       <Route path={`${AppRoute.MOVIES}/:id`} element={<Movie />}/>
-      <Route path={`${AppRoute.MOVIES}/:id${AppRoute.ADD_REVIEW}`} element={<AddReview/>}/>
+      <Route path={`${AppRoute.MOVIES}/:id${AppRoute.ADD_REVIEW}`} element={
+        <RequireAuth authorizationStatus={AuthorizationStatus.Auth}>
+          <AddReview />
+        </RequireAuth>
+      }
+      />
       <Route path={`${AppRoute.PLAYER}/:id`} element={<Player/>}/>
       <Route path={'*'} element={<NotFound/>}/>
     </Routes>
