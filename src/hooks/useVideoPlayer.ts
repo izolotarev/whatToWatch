@@ -1,4 +1,4 @@
-import { useState, useEffect, MutableRefObject} from 'react';
+import { useState, useEffect, MutableRefObject, BaseSyntheticEvent} from 'react';
 
 const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | null>) => {
 
@@ -8,6 +8,7 @@ const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | nul
     speed: 1,
     isMuted: true,
     isLoading: true,
+    currentTime: 0,
   });
 
   const togglePlay = () => {
@@ -29,10 +30,11 @@ const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | nul
     setPlayerState({
       ...playerState,
       progress,
+      currentTime: videoElementRef.current.currentTime,
     });
   };
 
-  const handleVideoProgress = (event) => {
+  const handleVideoProgress = (event: BaseSyntheticEvent) => {
     const manualChange = Number(event.target.value);
     if (videoElementRef.current === null) {return;}
     videoElementRef.current.currentTime = (videoElementRef.current.duration / 100) * manualChange;
@@ -42,7 +44,7 @@ const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | nul
     });
   };
 
-  const handleVideoSpeed = (event) => {
+  const handleVideoSpeed = (event: BaseSyntheticEvent) => {
     const speed = Number(event.target.value);
     if (videoElementRef.current === null) {return;}
     videoElementRef.current.playbackRate = speed;
@@ -66,6 +68,25 @@ const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | nul
       : (videoElementRef.current.muted = false);
   }, [playerState.isMuted, videoElementRef]);
 
+  const toggleFullscreen = () => {
+    if (isVideoInFullscreen()) {
+      document.exitFullscreen();
+    } else {
+      videoElementRef.current?.requestFullscreen();
+    }
+  };
+
+  const isVideoInFullscreen = () => {
+    if (
+      document.fullscreenElement &&
+      document.fullscreenElement.nodeName === 'VIDEO'
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+
   return {
     playerState,
     togglePlay,
@@ -73,6 +94,7 @@ const useVideoPlayer = (videoElementRef: MutableRefObject<HTMLVideoElement | nul
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
+    toggleFullscreen,
   };
 };
 

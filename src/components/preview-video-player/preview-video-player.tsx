@@ -6,18 +6,11 @@ type VideoPlayerProps = {
   poster: string;
 }
 
-const PREVIEW_TIME_TO_START = 250;
+const PREVIEW_TIME_TO_START = 1000;
 
 function PreviewVideoPlayer({src, poster}: VideoPlayerProps):JSX.Element {
   const videoElementRef = useRef(null);
-  const {
-    playerState,
-    togglePlay,
-    handleOnTimeUpdate,
-    handleVideoProgress,
-    handleVideoSpeed,
-    toggleMute,
-  } = useVideoPlayer(videoElementRef);
+  const { togglePlay } = useVideoPlayer(videoElementRef);
 
   useEffect(() => {
     setTimeout(() => {

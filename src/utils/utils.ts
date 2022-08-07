@@ -70,3 +70,17 @@ export const handleFavoriteClickAction = (status: AuthorizationStatus, isFavorit
       dispatch(addToFavorites(id));
     }
   };
+
+
+// runTime > 60 ? `${Math.floor(runTime / 60)}h ${runTime % 60}m` : `${runTime}m`
+
+export const formatTime = (sec: number) => {
+  let hours: number | string = Math.floor(sec / 3600); // get hours
+  let minutes: number | string = Math.floor((sec - (hours * 3600)) / 60); // get minutes
+  let seconds: number | string = Math.floor((sec - (hours * 3600) - (minutes * 60))); //  get seconds
+  // add 0 if value < 10; Example: 2 => 02
+  if (hours < 10) {hours = `0${hours}`; }
+  if (minutes < 10) {minutes = `0${minutes}`;}
+  if (seconds < 10) {seconds = `0${seconds}`;}
+  return `${hours}:${minutes}:${seconds}`; // Return is HH : MM : SS
+};
