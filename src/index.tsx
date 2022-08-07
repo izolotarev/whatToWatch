@@ -42,12 +42,12 @@ const container = document.getElementById('root');
 const root = createRoot(container!);
 root.render(
   <React.StrictMode>
-    <HistoryRouter history={browserHistory}>
-      <Provider store={store}>
+    <Provider store={store}>
+      <HistoryRouter history={browserHistory}>
         <ToastContainer />
         <App/>
-      </Provider>
-    </HistoryRouter>
+      </HistoryRouter>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -35,6 +35,7 @@ export const moviesData = createReducer(initialState, (builder) => {
     })
     .addCase(clearMovieById, (state, action) => {
       state.movie = initialState.movie;
+      state.isMovieLoaded = initialState.isMovieLoaded;
     })
     .addCase(loadFavoriteMovies, (state, action) => {
       state.favoriteMovies = action.payload.favoriteMovies.map((item) => adaptMovieToClient(item));
@@ -42,6 +43,7 @@ export const moviesData = createReducer(initialState, (builder) => {
     })
     .addCase(clearFavoriteMovies, (state) => {
       state.favoriteMovies = initialState.favoriteMovies;
+      state.favoriteMoviesLoaded = initialState.favoriteMoviesLoaded;
     })
     .addCase(addToFavoriteMovies, (state, action) => {
       const newFavoriteMovie = adaptMovieToClient(action.payload.favoriteMovie);

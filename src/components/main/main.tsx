@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { AppRoute, HeaderClass, MOVIE_CARDS_PER_STEP } from '../../const/const';
 import { useAppDispatch } from '../../hooks/hooks';
-import { getMovieFavoriteStatusById, getMoviesInSelectedGenre, getPromo, getPromoLoadingStatus, getUniqueGenres } from '../../store/reducers/movies/movies-selectors';
+import { getMovieFavoriteStatusById, getMoviesInSelectedGenre, getPromo, getUniqueGenres } from '../../store/reducers/movies/movies-selectors';
 import { getAuthorizationStatus } from '../../store/reducers/user/user-selectors';
 import { MovieType, State } from '../../types/types';
 import { handleFavoriteClickAction } from '../../utils/utils';
