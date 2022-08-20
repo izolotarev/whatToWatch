@@ -4,8 +4,6 @@ import { APIRoute, AppRoute, AuthorizationStatus, TypeOfFavoriteAction } from '.
 import { AuthInfo, MovieType, PostReviewType, ReviewType, ThunkActionResult } from '../../types/types';
 import { addToFavoriteMovies, clearFavoriteMovies, loadFavoriteMovies, loadMovieById, loadMovies, loadPromo, loadReviews, postReviewAction, postReviewError, redirectToRoute, removeFromFavoriteMovies, requireAuthorization, requireLogout } from './actions';
 
-// const POST_REVIEW_SUCCESS_MESSAGE = 'Your review was successfully added';
-
 export const fetchMovies = (): ThunkActionResult =>
   async (dispatch, _getState, api): Promise<void> => {
     try {

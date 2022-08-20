@@ -9,8 +9,6 @@ type RequireAuthProps = {
 export default function RequireAuth(props: RequireAuthProps) {
   const {children, authorizationStatus} = props;
 
-  // const authorizationStatus = AuthorizationStatus.Auth;
-
   if (authorizationStatus === AuthorizationStatus.NoAuth) {
     return <Navigate to={AppRoute.LOGIN} />;
   }

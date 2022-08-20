@@ -10,7 +10,7 @@ export const AppRoute = {
   ADD_REVIEW: '/review',
   PLAYER:'/player',
   NOT_FOUND: '/not-found',
-} as const;
+};
 
 export const APIRoute = {
   MOVIES: '/films',
