@@ -7,7 +7,7 @@ const { imageUrl } = image;
 const { color, url } = internet;
 const { firstName, lastName } = name;
 
-const person = `${firstName()} ${lastName()}`;
+const person = {id: number(), name: `${firstName()} ${lastName()}`} ;
 
 export const makeFakeMovie = (): MovieType => ({
   id: number(),
@@ -21,12 +21,11 @@ export const makeFakeMovie = (): MovieType => ({
   description: paragraph(),
   rating: float(),
   scoresCount: number(),
-  director: person,
+  director: `${firstName()} ${lastName()}`,
   starring: new Array(number({'min': 1, 'max': 5})).fill(null).map(() => person),
   runTime: number(),
   genre: word(),
-  released: number(),
-  isFavorite: false,
+  released: number()
 });
 
 //     'id': 1,
@@ -41,8 +40,7 @@ export const makeFakeMovie = (): MovieType => ({
 //     'rating': 8.9,
 //     'scoresCount': 240,
 //     'director': 'Wes Andreson',
-//     'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+//     'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
 //     'runTime': 99,
 //     'genre': 'Comedy',
-//     'released': 2014,
-//     'isFavorite': false
+//     'released': 2014

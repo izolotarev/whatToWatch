@@ -17,11 +17,10 @@ export type MovieType = {
   rating: number,
   scoresCount: number,
   director: string,
-  starring: string[],
+  starring: ActorType[],
   runTime: number,
   genre: string,
   released: number,
-  isFavorite: boolean,
   ['poster_image']?: string,
   ['preview_image']?: string,
   ['background_image']?: string,
@@ -30,8 +29,12 @@ export type MovieType = {
   ['preview_video_link']?: string,
   ['scores_count']?: number,
   ['run_time']?: number,
-  ['is_favorite']?: boolean,
 };
+
+export type ActorType = {
+  id: number,
+  name: string
+}
 
 export type ReviewType = {
   id: number,
@@ -84,4 +87,6 @@ export type AuthInfo = {
   email: string,
   name: string,
   avatar_url: string,
+  access_token: string,
+  token_type: string
 };

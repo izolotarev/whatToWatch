@@ -23,7 +23,7 @@ function Details({movie}:DetailsProps): JSX.Element {
             {starring.map((star) =>
               (
                 <Fragment key={1}>
-                  {star}, <br/>
+                  {star.name}, <br/>
                 </Fragment>
               )
             )}

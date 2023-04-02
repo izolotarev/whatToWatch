@@ -31,7 +31,6 @@ export const adaptMovieToClient = (data: MovieType): MovieType => {
       previewVideoLink: data['preview_video_link'],
       scoresCount: data['scores_count'],
       runTime: data['run_time'],
-      isFavorite: data['is_favorite'],
     },
   );
   delete adaptedItem['poster_image'];
@@ -42,7 +41,6 @@ export const adaptMovieToClient = (data: MovieType): MovieType => {
   delete adaptedItem['preview_video_link'];
   delete adaptedItem['scores_count'];
   delete adaptedItem['run_time'];
-  delete adaptedItem['is_favorite'];
   return adaptedItem;
 };
 

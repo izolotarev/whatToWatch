@@ -18,11 +18,10 @@ export const movies: MovieType[] = [
     'rating': 8.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 2,
@@ -37,11 +36,10 @@ export const movies: MovieType[] = [
     'rating': 7.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Horror',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 3,
@@ -56,11 +54,10 @@ export const movies: MovieType[] = [
     'rating': 6.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Family',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 4,
@@ -75,11 +72,10 @@ export const movies: MovieType[] = [
     'rating': 2.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 5,
@@ -94,11 +90,10 @@ export const movies: MovieType[] = [
     'rating': 1.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 6,
@@ -113,11 +108,10 @@ export const movies: MovieType[] = [
     'rating': 1.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 7,
@@ -132,11 +126,10 @@ export const movies: MovieType[] = [
     'rating': 5.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 8,
@@ -151,11 +144,10 @@ export const movies: MovieType[] = [
     'rating': 9.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 9,
@@ -170,11 +162,10 @@ export const movies: MovieType[] = [
     'rating': 9.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 10,
@@ -189,11 +180,10 @@ export const movies: MovieType[] = [
     'rating': 8.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Horror',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 11,
@@ -208,11 +198,10 @@ export const movies: MovieType[] = [
     'rating': 7.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Family',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 12,
@@ -227,11 +216,10 @@ export const movies: MovieType[] = [
     'rating': 6.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Family',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 13,
@@ -246,11 +234,10 @@ export const movies: MovieType[] = [
     'rating': 2.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Horror',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 14,
@@ -265,11 +252,10 @@ export const movies: MovieType[] = [
     'rating': 1.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 15,
@@ -284,11 +270,10 @@ export const movies: MovieType[] = [
     'rating': 1.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 16,
@@ -303,11 +288,10 @@ export const movies: MovieType[] = [
     'rating': 5.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
   {
     'id': 17,
@@ -322,10 +306,9 @@ export const movies: MovieType[] = [
     'rating': 9.9,
     'scoresCount': 240,
     'director': 'Wes Andreson',
-    'starring': ['Bill Murray', 'Edward Norton', 'Jude Law', 'Willem Dafoe', 'Saoirse Ronan'],
+    'starring': [{id: 1, name: 'Bill Murray'}, {id: 2, name: 'Edward Norton'}, {id: 3, name: 'Jude Law'}, {id: 4, name: 'Willem Dafoe'}, {id: 5, name: 'Saoirse Ronan'}],
     'runTime': 99,
     'genre': 'Comedy',
-    'released': 2014,
-    'isFavorite': false
+    'released': 2014
   },
 ];

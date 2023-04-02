@@ -13,12 +13,12 @@ export const AppRoute = {
 };
 
 export const APIRoute = {
-  MOVIES: '/films',
-  PROMO: '/films/promo',
-  LOGIN: '/login',
+  MOVIES: '/movies',
+  PROMO: '/movies/promo/',
+  LOGIN: '/token',
   LOGOUT: '/logout',
   REVIEWS: '/comments',
-  FAVORITE:  '/favorite',
+  FAVORITE:  '/favorites',
 };
 
 export enum AuthorizationStatus {
@@ -71,8 +71,3 @@ export enum PageScreen {
 
 export const MAX_NUMBER_OF_GENRES = 10;
 export const NUMBER_OF_SIMILAR_MOVIES = 4;
-
-export const TypeOfFavoriteAction = {
-  ADD_TO_FAVORITE: 1,
-  REMOVE_FROM_FAVORITE: 0,
-};

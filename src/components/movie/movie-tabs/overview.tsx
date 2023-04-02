@@ -23,7 +23,7 @@ function Overview({movie}:OverviewProps): JSX.Element {
 
         <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-        <p className="movie-card__starring"><strong>Starring: {starring.join(', ')}</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {starring.map((star) => star.name).join(', ')}</strong></p>
       </div>
     </>
   );
