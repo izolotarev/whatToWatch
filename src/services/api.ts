@@ -1,4 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
+import { toast } from 'react-toastify';
+import { APIRoute } from '../const/const';
 import { getToken } from './token';
 
 const BACKEND_URL = 'https://what-to-watch-server-production.up.railway.app'; //'https://6.react.pages.academy/wtw' http://127.0.0.1:8000 https://what-to-watch-k1cx.onrender.com https://what-to-watch-server-production.up.railway.app
@@ -22,8 +24,10 @@ export const createAPI = (onUnauthorized: UnauthorizedCallback): AxiosInstance =
 
     (error: AxiosError) => {
       const {response} = error;
-
       if (response?.status === HttpCode.Unauthorized) {
+        if (error.config.url === APIRoute.LOGIN && error.config.method === 'post') {
+          toast.info('Please provide correct email or password');
+        }
         return onUnauthorized();
       }
 
