@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError, AxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 
-const BACKEND_URL = 'http://127.0.0.1:8000'; //'https://6.react.pages.academy/wtw'
+const BACKEND_URL = 'https://what-to-watch-5r38.onrender.com'; //'https://6.react.pages.academy/wtw' http://127.0.0.1:8000
 const REQUEST_TIMEOUT = 5000;
 
  enum HttpCode {
