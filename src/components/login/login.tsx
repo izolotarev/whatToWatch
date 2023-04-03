@@ -1,9 +1,11 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { HeaderClass, PageScreen } from '../../const/const';
+import { AuthorizationStatus, HeaderClass, PageScreen } from '../../const/const';
 import { useAppDispatch } from '../../hooks/hooks';
 import { login } from '../../store/actions/api-actions';
+import { getAuthorizationStatus } from '../../store/reducers/user/user-selectors';
 import { validate } from '../../utils/utils';
 import Footer from '../footer/footer';
 import Header from '../header/header';
@@ -11,10 +13,13 @@ import Header from '../header/header';
 export const INVALID_LOGIN_MESSAGE = 'Invalid email or password';
 
 function Login():JSX.Element {
+  const authorizationStatus = useSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
 
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+
+  const [loginFinished, setLoginFinished] = useState(false);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -28,6 +33,7 @@ function Login():JSX.Element {
         loginRef.current.value,
         passwordRef.current.value
       ));
+      setLoginFinished(true);
     }
   };
 
@@ -38,6 +44,15 @@ function Login():JSX.Element {
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" method="post" onSubmit={handleSubmit}>
+          {
+            loginFinished && authorizationStatus === AuthorizationStatus.NoAuth
+              ?
+              <div className="sign-in__message">
+                <p>Please enter a valid email address and password </p>
+              </div>
+              :
+              ''
+          }
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input
